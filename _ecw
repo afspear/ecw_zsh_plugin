@@ -1,0 +1,21 @@
+#compdef ecw
+#autoload
+
+local -a _1st_arguments
+_1st_arguments=(
+  'opssh:opssh to site'
+  'opscp:file transfer to site'
+  'passwd:get root password for site'
+  'version:get site version'
+)
+
+_arguments -C \
+  ':command:->command' \
+  '*::options:->options'
+
+case $state in
+  (command)
+    _describe -t commands "jira subcommand" _1st_arguments
+    return
+  ;;
+esac
