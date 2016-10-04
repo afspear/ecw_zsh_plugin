@@ -15,7 +15,7 @@ _arguments -C \
 
 case $state in
   (command)
-    _describe -t commands "jira subcommand" _1st_arguments
+    _describe -t commands "ecw subcommand" _1st_arguments
     return
   ;;
 esac
