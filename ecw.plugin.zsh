@@ -4,6 +4,7 @@
 #
 
 : ${ECW_DEFAULT_ACTION:=opssh}
+zmodload zsh/regex
 
 function ecw() {
   emulate -L zsh
@@ -23,7 +24,7 @@ function ecw() {
 
  # Lets get cluster information
   local node=$(echo $ecw_site | cut -d . -f1)
-  local cluster=$(echo $ecw_site | cut -d . -f2 | cut -b2)
+  local cluster=$(echo $ecw_site | cut -d . -f2 | cut -b2,3)
   local site=$(echo $ecw_site | cut -d . -f3)
 
   if [[ $node == 'n1' ]]; then
@@ -35,10 +36,10 @@ function ecw() {
     local _node=node1
   fi
 
-  if [[ $cluster == [0-9] ]]; then
-    local _cluster=cluster$cluster
+  if [[ $cluster =~ [1-9] ]]; then
+    _cluster=cluster$cluster
   else
-    local _cluster=cluster1
+    _cluster=cluster1
   fi
 
   local _ecw_site=$_node.$_cluster.$site
