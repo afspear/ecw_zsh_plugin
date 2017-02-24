@@ -92,6 +92,6 @@ function ecw() {
     echo " Transferring files to/from:" $fg_bold[red]"$_ecw_site" $reset_color
     echo $fg_bold[red]"********************************************************************" $reset_color
     echo ""
-    $scp -qP $__fonehome_port -oProxyCommand="$ssh -W %h:%p $ops" $3 $4
+    $scp -qP $__fonehome_port -oProxyCommand="$ssh -W %h:%p $ops" localhost:$3 $4
   fi
 }
